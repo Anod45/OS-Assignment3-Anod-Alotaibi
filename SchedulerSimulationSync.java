@@ -7,8 +7,6 @@ import java.util.Queue;
 import java.util.Random;
 import java.util.concurrent.Semaphore;
 import java.util.concurrent.locks.ReentrantLock;
-impot java.util.concurrent.Semaphore;
-
 // ANSI Color Codes for enhanced terminal output
 class Colors {
     public static final String RESET = "\u001B[0m";
@@ -172,6 +170,8 @@ class Process implements Runnable {
         } finally {
             // TODO #4: Release CPU semaphore here
             // Always release in finally block to prevent deadlocks!
+            // Added semaphore to limit CPU access
+final Semaphore cpuSemaphore = new Semaphore(1);
         }
     }
     
