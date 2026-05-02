@@ -59,7 +59,16 @@ public static final ReentrantLock lock = new ReentrantLock();
     public static void incrementCompletedProcess() {
         // TODO: Protect this critical section with a lock
         completedProcessCount++;
+
     }
+    public static void incrementContextSwitch1() {
+    lock.lock();
+    try {
+        contextSwitchCount++;
+    } finally {
+        lock.unlock();
+    }
+}
     
     // Method to add waiting time
     public static void addWaitingTime(long time) {
